@@ -1,6 +1,6 @@
 package com.example.weatherapp.ui.weather.future.detail
 
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -27,7 +27,7 @@ class FutureDetailWeatherFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(FutureDetailWeatherViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(FutureDetailWeatherViewModel::class.java)
         // TODO: Use the ViewModel
     }
 
