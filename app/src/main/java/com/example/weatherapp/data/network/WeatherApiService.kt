@@ -1,6 +1,6 @@
-package com.example.weatherapp.data
+package com.example.weatherapp.data.network
 
-import com.example.weatherapp.data.response.CurrentWeatherResponse
+import com.example.weatherapp.data.network.response.CurrentWeatherResponse
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import kotlinx.coroutines.Deferred
 import okhttp3.Interceptor
@@ -17,17 +17,22 @@ interface WeatherApiService {
 
     @GET("current")
     fun getCurrentWeather(
-        @Query("query") location: String
+        @Query("query")
+        location: String
     ): Deferred<CurrentWeatherResponse>
 
     companion object{
-        operator fun invoke(): WeatherApiService{
+        operator fun invoke(
+            connectivityIntercepter: ConnectivityIntercepter
+        ): WeatherApiService {
             val requestInterceptor = Interceptor{
                 chain ->
                 val url = chain.request()
                     .url()
                     .newBuilder()
-                    .addQueryParameter("access_key", API_KEY)
+                    .addQueryParameter("access_key",
+                        API_KEY
+                    )
                     .build()
                 val request = chain.request()
                     .newBuilder()
@@ -37,6 +42,7 @@ interface WeatherApiService {
             }
            val okHttpClient = OkHttpClient.Builder()
                .addInterceptor(requestInterceptor)
+               .addInterceptor(connectivityIntercepter)
                .build()
             return Retrofit.Builder()
                 .client(okHttpClient)
