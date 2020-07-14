@@ -1,4 +1,4 @@
-package com.example.weatherapp
+package com.example.weatherapp.internal
 
 import androidx.room.TypeConverter
 import com.google.gson.Gson

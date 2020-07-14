@@ -4,7 +4,7 @@ package com.example.weatherapp.data.db.entity
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverters
-import com.example.weatherapp.Converters
+import com.example.weatherapp.internal.Converters
 import com.google.gson.annotations.SerializedName
 
 const val CURRENT_WEATHER_ID = 0
