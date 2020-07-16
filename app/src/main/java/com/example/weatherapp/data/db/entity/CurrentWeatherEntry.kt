@@ -12,13 +12,13 @@ const val CURRENT_WEATHER_ID = 0
 @Entity(tableName = "current_weather")
 @TypeConverters(value = [(Converters::class)])
 data class CurrentWeatherEntry(
-    val feelslike: Int,
+    val feelslike: Double,
     @SerializedName("is_day")
     val isDay: String,
     @SerializedName("observation_time")
     val observationTime: String,
     val precip: Double,
-    val temperature: Int,
+    val temperature: Double,
     @SerializedName("weather_descriptions")
     @TypeConverters(Converters::class)
     val weatherDescriptions: List<String>,//list of strings

@@ -4,7 +4,7 @@ import androidx.room.ColumnInfo
 
 data class ImperialCurrentWeatherEntry (
     @ColumnInfo(name = "temperature")
-    override val temperature: Int,
+    override val temperature: Double,
     @ColumnInfo(name = "weatherDescriptions")
     override val conditionText: String,
     @ColumnInfo(name = "weatherIcons")
@@ -16,7 +16,7 @@ data class ImperialCurrentWeatherEntry (
     @ColumnInfo(name = "precip")
     override val precipitaionVolume: Double,
     @ColumnInfo(name = "feelslike")
-    override val feelsLikeTemperature: Int,
+    override val feelsLikeTemperature: Double,
     @ColumnInfo(name = "visibility")
     override val visibilityDistance: Double
 ) : UnitSpecificCurrentWeatherEntry
