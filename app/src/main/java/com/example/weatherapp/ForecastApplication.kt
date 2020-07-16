@@ -4,6 +4,8 @@ import android.app.Application
 import androidx.preference.PreferenceManager
 import com.example.weatherapp.data.db.ForecastDatabase
 import com.example.weatherapp.data.network.*
+import com.example.weatherapp.data.provider.LocationProvider
+import com.example.weatherapp.data.provider.LocationProviderImpl
 import com.example.weatherapp.data.provider.UnitProvider
 import com.example.weatherapp.data.provider.UnitProviderImpl
 import com.example.weatherapp.data.repository.ForecastRepository
@@ -24,10 +26,12 @@ class ForecastApplication: Application(), KodeinAware {
 
         bind() from singleton { ForecastDatabase(instance()) }
         bind() from singleton { instance<ForecastDatabase>().currentWeatherDao() }
+        bind() from singleton { instance<ForecastDatabase>().weatherLocationDao() }
         bind<ConnectivityIntercepter>() with singleton { ConnectivityIntercepterImpl(instance()) }
         bind() from singleton { WeatherApiService(instance()) }
         bind<WeatherNetworkDataSource>() with singleton { WeatherNetworkDataSourceImpl(instance()) }
-        bind<ForecastRepository>() with singleton { ForecastRepositoryImpl(instance(), instance()) }
+        bind<LocationProvider>() with singleton { LocationProviderImpl() }
+        bind<ForecastRepository>() with singleton { ForecastRepositoryImpl(instance(), instance(), instance(), instance()) }
         bind<UnitProvider>() with singleton { UnitProviderImpl(instance()) }
         bind() from provider { CurrentWeatherViewModelFactory(instance(), instance()) }
     }

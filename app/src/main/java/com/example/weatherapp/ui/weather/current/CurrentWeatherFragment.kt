@@ -46,26 +46,23 @@ class CurrentWeatherFragment : ScopedFragment(), KodeinAware {
                                     .get(CurrentWeatherViewModel::class.java)
 
         bindUI()
-//        val apiService = WeatherApiService(ConnectivityIntercepterImpl(this.context!!))
-//        val weatherNetworkDataSource = WeatherNetworkDataSourceImpl(apiService)
-//
-//        weatherNetworkDataSource.downloadedCurrentWeather.observe(this, Observer {
-//            textView.text = it.toString()
-//        })
-//
-//        GlobalScope.launch(Dispatchers.Main) {
-//            weatherNetworkDataSource.fetchCurrentWeather("india")
-//        }
     }
 
     @SuppressLint("FragmentLiveDataObserve")
     private fun bindUI() = launch{
         val currentWeather = viewModel.weather.await()
+        val weatherLocation = viewModel.weatherLocation.await()
+
+        weatherLocation.observe(this@CurrentWeatherFragment, Observer { location->
+            if (location == null) return@Observer
+
+            updateLocation(location.name)
+        })
+
         currentWeather.observe(this@CurrentWeatherFragment, Observer {
             if (it==null) return@Observer
 
             group_loading.visibility = View.GONE
-            updateLocation("India")
             updateDateToToday()
             updateCondition(it.conditionText)
             updateTemperatures(it.temperature, it.feelsLikeTemperature)
