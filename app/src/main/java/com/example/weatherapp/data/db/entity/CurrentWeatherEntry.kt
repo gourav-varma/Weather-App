@@ -1,36 +1,42 @@
 package com.example.weatherapp.data.db.entity
 
 
+import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import androidx.room.TypeConverters
-import com.example.weatherapp.internal.Converters
 import com.google.gson.annotations.SerializedName
 
 const val CURRENT_WEATHER_ID = 0
 
 @Entity(tableName = "current_weather")
-@TypeConverters(value = [(Converters::class)])
 data class CurrentWeatherEntry(
-    val feelslike: Double,
+    @SerializedName("temp_c")
+    val tempC: Double,
+    @SerializedName("temp_f")
+    val tempF: Double,
     @SerializedName("is_day")
-    val isDay: String,
-    @SerializedName("observation_time")
-    val observationTime: String,
-    val precip: Double,
-    val temperature: Double,
-    @SerializedName("weather_descriptions")
-    @TypeConverters(Converters::class)
-    val weatherDescriptions: List<String>,//list of strings
-    @SerializedName("weather_icons")
-    @TypeConverters(Converters::class)
-    val weatherIcons: List<String>,//list of strings
+    val isDay: Int,
+    @Embedded(prefix = "condition_")
+    val condition: Condition,
+    @SerializedName("wind_mph")
+    val windMph: Double,
+    @SerializedName("wind_kph")
+    val windKph: Double,
     @SerializedName("wind_dir")
     val windDir: String,
-    @SerializedName("wind_speed")
-    val windSpeed: Double,
-    val visibility: Double
-){
+    @SerializedName("precip_mm")
+    val precipMm: Double,
+    @SerializedName("precip_in")
+    val precipIn: Double,
+    @SerializedName("feelslike_c")
+    val feelslikeC: Double,
+    @SerializedName("feelslike_f")
+    val feelslikeF: Double,
+    @SerializedName("vis_km")
+    val visKm: Double,
+    @SerializedName("vis_miles")
+    val visMiles: Double
+) {
     @PrimaryKey(autoGenerate = false)
     var id: Int = CURRENT_WEATHER_ID
 }

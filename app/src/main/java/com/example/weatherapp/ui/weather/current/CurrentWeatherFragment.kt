@@ -69,12 +69,12 @@ class CurrentWeatherFragment : ScopedFragment(), KodeinAware {
             updateDateToToday()
             updateCondition(it.conditionText)
             updateTemperatures(it.temperature, it.feelsLikeTemperature)
-            updatePrecipitation(it.precipitaionVolume)
+            updatePrecipitation(it.precipitationVolume)
             updateWind(it.windDirection,it.windSpeed)
             updatevisibility(it.visibilityDistance)
 
             GlideApp.with(this@CurrentWeatherFragment)
-                .load("http${it.conditionIconUrl.removePrefix("[\"https").removeSuffix("\"]")}")
+                .load("http:${it.conditionIconUrl}")
                 .into(imageView_condition_icon)
 
 
@@ -101,13 +101,13 @@ class CurrentWeatherFragment : ScopedFragment(), KodeinAware {
     }
 
     private fun updateCondition(condition: String){
-        textView_condition.text = condition.removePrefix("[\"").removeSuffix("\"]")
+        textView_condition.text = condition
     }
 
     @SuppressLint("SetTextI18n")
-    private fun updatePrecipitation(precipitaionVolume: Double){
+    private fun updatePrecipitation(precipitationVolume: Double){
         val unitAbbreviation = chooseLocalizedUnitAbbreviation("mm","in")
-        textView_precipitation.text = "Precipitation: $precipitaionVolume $unitAbbreviation"
+        textView_precipitation.text = "Precipitation: $precipitationVolume $unitAbbreviation"
     }
 
     @SuppressLint("SetTextI18n")
