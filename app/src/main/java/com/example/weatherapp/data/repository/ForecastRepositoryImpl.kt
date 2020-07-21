@@ -55,7 +55,7 @@ class ForecastRepositoryImpl(
     ): LiveData<out List<UnitSpecificSimpleFutureWeatherEntry>> {
         return withContext(Dispatchers.IO){
             initWeatherData()
-            return@withContext if (metric)futureWeatherDao.getSimpleWeatherForecastMetric(startDate)
+            return@withContext if(metric) futureWeatherDao.getSimpleWeatherForecastMetric(startDate)
             else futureWeatherDao.getSimpleWeatherForecastImperial(startDate)
         }
     }
@@ -95,9 +95,9 @@ class ForecastRepositoryImpl(
             fetchFutureWeather()
             return
         }
-        if (isFetchCurrentNeeded(lastWeatherLocation.zonedDateTime)){
+        if (isFetchCurrentNeeded(lastWeatherLocation.zonedDateTime))
             fetchCurrentWeather()
-        }
+
         if (isFetchFutureNeeded())
             fetchFutureWeather()
     }
