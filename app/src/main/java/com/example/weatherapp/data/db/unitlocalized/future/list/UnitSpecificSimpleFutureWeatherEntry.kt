@@ -1,4 +1,4 @@
-package com.example.weatherapp.data.db.unitlocalized.future
+package com.example.weatherapp.data.db.unitlocalized.future.list
 
 import org.threeten.bp.LocalDate
 

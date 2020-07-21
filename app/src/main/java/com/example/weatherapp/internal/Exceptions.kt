@@ -6,3 +6,5 @@ import java.lang.Exception
 class NoConnectivityException: IOException()
 
 class LocationPremissionNotGrantedException: Exception()
+
+class DateNotFoundException: Exception()

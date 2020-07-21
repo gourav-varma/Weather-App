@@ -2,8 +2,8 @@ package com.example.weatherapp.ui.weather.future.list
 
 
 import com.example.weatherapp.R
-import com.example.weatherapp.data.db.unitlocalized.future.MetricSimpleFutureWeatherEntry
-import com.example.weatherapp.data.db.unitlocalized.future.UnitSpecificSimpleFutureWeatherEntry
+import com.example.weatherapp.data.db.unitlocalized.future.list.MetricSimpleFutureWeatherEntry
+import com.example.weatherapp.data.db.unitlocalized.future.list.UnitSpecificSimpleFutureWeatherEntry
 import com.example.weatherapp.internal.glide.GlideApp
 import com.xwray.groupie.kotlinandroidextensions.GroupieViewHolder
 import com.xwray.groupie.kotlinandroidextensions.Item
