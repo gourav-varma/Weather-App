@@ -86,8 +86,8 @@ class FutureListWeatherFragment : ScopedFragment(),KodeinAware {
             adapter = groupAdapter
         }
 
-//        groupAdapter.setOnItemClickListener { item, view ->
-//            Toast.makeText(this@FutureListWeatherFragment.context, "Clicked", Toast.LENGTH_SHORT).show()
-//        }
+        groupAdapter.setOnItemClickListener { item, view ->
+            Toast.makeText(this@FutureListWeatherFragment.context, "Clicked", Toast.LENGTH_SHORT).show()
+        }
     }
 }
